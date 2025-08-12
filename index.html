@@ -79,7 +79,7 @@
     <button id="installBtn" class="btn btn-main btn-install" type="button">Tải ứng dụng</button>
   </div>
 
-  <!-- Inline config to avoid 404 issues -->
+  <!-- Inline config for reliable loading -->
   <script>
     // Configuration for Food Ninja App
     const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -103,8 +103,7 @@
     console.log('[Config] API Base URL:', window.API_BASE_URL);
   </script>
   
-  <!-- Load config.js as fallback (optional) -->
-  <script src="config.js" defer onerror="console.log('config.js not found, using inline config')"></script>
+  <!-- Main application script -->
   <script src="main.js" defer></script>
   <script defer>
     if ('serviceWorker' in navigator) {
