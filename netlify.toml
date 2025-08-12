@@ -74,9 +74,5 @@
   to = "/index.html"
   status = 200
 
-[build]
-  publish = "."
-  command = "npm install && npm run diagrams"
-
 [build.environment]
   NODE_VERSION = "18"
