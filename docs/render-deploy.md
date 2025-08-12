@@ -14,7 +14,7 @@
    Environment: Python 3
    Region: Oregon (US West) or Singapore (Asia)
    Branch: main
-   Root Directory: . (leave blank for root)
+   Root Directory: backend
    ```
 
 3. **Build & Deploy Settings**

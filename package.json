@@ -1,11 +1,17 @@
 {
-  "name": "nutrition-food-diagrams",
+  "name": "foodninja-pwa",
   "private": true,
   "version": "1.0.0",
-  "description": "Render Mermaid diagrams to PNG/SVG for documentation.",
+  "description": "Food Recognition PWA with AI Integration - Static Frontend",
+  "main": "index.html",
   "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "start": "echo 'Static site deployed'",
     "diagrams": "node docs/render-diagrams.js"
   },
+  "keywords": ["pwa", "food", "ai", "nutrition", "static"],
+  "author": "Duydzgithub",
+  "license": "MIT",
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^10.9.1"
   }
