@@ -41,11 +41,16 @@
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
+# API proxy to backend (update with your Render URL)
 [[redirects]]
   from = "/api/*"
-  to = "https://your-backend-domain.render.com/:splat"
+  to = "https://foodninja-backend.onrender.com/:splat"
   status = 200
   force = true
 
 [build]
   publish = "."
+  command = "npm install && npm run diagrams"
+
+[build.environment]
+  NODE_VERSION = "18"
