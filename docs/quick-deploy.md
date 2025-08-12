@@ -13,8 +13,10 @@
 🔘 Click "New" → "Web Service"
 📂 Connect repository: "foodninja-ai"
 🌿 Branch: main
-📁 Root Directory: backend
+📁 Root Directory: . (leave empty for root)
 ```
+
+**⚠️ UPDATED:** Use root directory (not backend) - files copied to root
 
 ### 3. Service Settings
 ```
@@ -30,7 +32,7 @@
 ▶️ Start Command: gunicorn app:app --bind 0.0.0.0:$PORT
 ```
 
-**⚠️ IMPORTANT:** Make sure Root Directory is set to `backend`
+**✅ FIXED:** Files now in root directory
 
 ### 5. Environment Variables (COPY-PASTE):
 ```
