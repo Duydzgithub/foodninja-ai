@@ -338,7 +338,7 @@ body {
 .chatbot-fab {
   position: fixed;
   right: 24px;
-  bottom: 24px;
+  bottom: 80px; /* Tăng từ 24px lên 80px để không bị che trên mobile */
   z-index: 50;
   background: var(--color-main, #4CAF50);
   color: #fff;
@@ -363,7 +363,7 @@ body {
   flex-direction: column;
   position: fixed;
   right: 24px;
-  bottom: 88px;
+  bottom: 144px; /* Tăng từ 88px lên 144px để có khoảng cách phù hợp */
   width: 340px;
   max-width: 96vw;
   background: var(--color-card, #fff);
@@ -529,5 +529,20 @@ body {
   }
   .ai-qa-box, .result-box {
     padding: 12px 6px;
+  }
+  
+  /* Mobile chatbot positioning - cao hơn để không bị che */
+  .chatbot-fab {
+    bottom: 100px; /* Tăng thêm trên mobile */
+    right: 16px;
+    width: 52px;
+    height: 52px;
+    font-size: 1.4em;
+  }
+  .chatbot-box {
+    bottom: 164px; /* Tăng tương ứng */
+    right: 8px;
+    width: calc(100vw - 16px);
+    max-width: 320px;
   }
 }
