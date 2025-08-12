@@ -38,8 +38,9 @@
 
 ## 🚀 Demo
 
-**Frontend**: [https://your-app.netlify.app](https://your-app.netlify.app)  
-**Backend API**: [https://your-backend.render.com](https://your-backend.render.com)
+**Frontend**: [https://foodninja-ai.netlify.app](https://foodninja-ai.netlify.app)  
+**Backend API**: [https://foodninja-backend.render.com](https://foodninja-backend.render.com)  
+**Repository**: [https://github.com/Duydzgithub/foodninja-ai](https://github.com/Duydzgithub/foodninja-ai)
 
 ## 🛠️ Công nghệ sử dụng
 
@@ -72,7 +73,7 @@
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/your-username/foodninja-ai.git
+git clone https://github.com/Duydzgithub/foodninja-ai.git
 cd foodninja-ai
 ```
 
@@ -216,9 +217,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 📧 Email: admin@example.com
+- 📧 Email: duydzgithub@example.com
 - 📚 Documentation: [docs/](docs/)
-- 🐛 Issues: [GitHub Issues](https://github.com/your-username/foodninja-ai/issues)
+- 🐛 Issues: [GitHub Issues](https://github.com/Duydzgithub/foodninja-ai/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/Duydzgithub/foodninja-ai/discussions)
 
 ---
 
