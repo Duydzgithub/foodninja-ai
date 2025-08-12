@@ -79,8 +79,32 @@
     <button id="installBtn" class="btn btn-main btn-install" type="button">Tải ứng dụng</button>
   </div>
 
-  <!-- Optional: override API base in config.js by setting window.API_BASE -->
-  <script src="config.js" defer></script>
+  <!-- Inline config to avoid 404 issues -->
+  <script>
+    // Configuration for Food Ninja App
+    const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    // API Configuration
+    const API_CONFIG = {
+        development: {
+            BASE_URL: 'http://localhost:5000'
+        },
+        production: {
+            BASE_URL: 'https://foodninja-backend.onrender.com'
+        }
+    };
+    
+    // Set global API base
+    const currentConfig = isDevelopment ? API_CONFIG.development : API_CONFIG.production;
+    window.API_BASE = currentConfig.BASE_URL;
+    window.API_BASE_URL = currentConfig.BASE_URL;
+    
+    console.log('[Config] Environment:', isDevelopment ? 'Development' : 'Production');
+    console.log('[Config] API Base URL:', window.API_BASE_URL);
+  </script>
+  
+  <!-- Load config.js as fallback (optional) -->
+  <script src="config.js" defer onerror="console.log('config.js not found, using inline config')"></script>
   <script src="main.js" defer></script>
   <script defer>
     if ('serviceWorker' in navigator) {
