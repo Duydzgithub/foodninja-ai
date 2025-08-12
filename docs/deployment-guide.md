@@ -103,13 +103,14 @@
 ## 📝 Final URLs:
 ```
 Backend API: https://foodninja-backend.onrender.com
-Frontend PWA: https://unique-name.netlify.app
+Frontend PWA: https://foodninja-ai.netlify.app
 GitHub Repo: https://github.com/Duydzgithub/foodninja-ai
 ```
 
 ## 🚨 Important Notes:
 1. Render free tier sleeps after 15 min inactivity
-2. First request after sleep takes 30-60 seconds
+2. First request after sleep takes 30-60 seconds  
 3. Netlify offers 100GB bandwidth/month free
 4. Keep API keys secure in environment variables
 5. Monitor usage limits on all APIs
+6. **CRITICAL**: Update backend URL in config.js after Render deployment

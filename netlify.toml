@@ -48,6 +48,25 @@
   status = 200
   force = true
 
+# Proxy direct API calls to backend
+[[redirects]]
+  from = "/predict"
+  to = "https://foodninja-backend.onrender.com/predict"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/ask_ai"
+  to = "https://foodninja-backend.onrender.com/ask_ai"
+  status = 200
+  force = true
+
+# Fallback for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 [build]
   publish = "."
   command = "npm install && npm run diagrams"

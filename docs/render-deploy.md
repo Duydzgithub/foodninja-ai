@@ -26,13 +26,19 @@
 4. **Environment Variables** (CRITICAL!)
    Add these environment variables in Render dashboard:
    ```
-   CLARIFAI_PAT=your_clarifai_personal_access_token
-   CALORIE_API_KEY=your_calorieninjas_api_key  
-   COHERE_API_KEY=your_cohere_api_key
-   ALLOWED_ORIGINS=https://your-netlify-domain.netlify.app
+   CLARIFAI_PAT=ee3c204a684349988ab75e29e0b6d71f
+   CALORIE_API_KEY=YAUwnJbm2FnEJNxSnCAzDQ==CnSPSycr1OSpeZZw  
+   COHERE_API_KEY=MWfoDxQO7eGLx7V3HYIRaSEQAXqJziFK9dMZEd9y
+   ALLOWED_ORIGINS=https://foodninja-ai.netlify.app
    MIN_CONFIDENCE=0.4
    PYTHON_VERSION=3.11.0
    ```
+
+   **🔑 Để lấy COHERE_API_KEY:**
+   1. Truy cập: https://dashboard.cohere.com
+   2. Đăng ký/Đăng nhập tài khoản
+   3. Vào Dashboard → API Keys → Create API Key
+   4. Copy key (dạng: co_xxxxxxxxxx) và thay vào đây
 
 5. **Health Check**
    - Health Check Path: `/`

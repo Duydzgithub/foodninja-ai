@@ -1,15 +1,26 @@
 // FoodNinja - Modern Culinary Logic
-// API base configuration:
-// - In development (localhost/127.0.0.1): use Flask at http://127.0.0.1:5000
-// - In production: by default use relative path (works if you proxy at Netlify),
-//   or override by adding a Nutrition Food/config.js with: window.API_BASE = 'https://<your-backend>'
-const API_BASE = (window.API_BASE !== undefined)
-  ? String(window.API_BASE)
-  : ((location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-      ? 'http://127.0.0.1:5000'
-      : '');
+// API base configuration now handled by config.js
+// Wait for config.js to load, then use the configured API base
+const API_BASE = (() => {
+    // If config.js loaded and set API_BASE, use it
+    if (window.API_BASE !== undefined) {
+        return String(window.API_BASE);
+    }
+    
+    // Fallback for backward compatibility
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        return 'http://127.0.0.1:5000';
+    }
+    
+    // Production fallback - try relative paths
+    return '';
+})();
+
 // Debug: xem frontend đang gọi API ở đâu
-try { console.log('[FoodNinja] API_BASE =', API_BASE || '(relative / same-origin)'); } catch (e) {}
+try { 
+    console.log('[FoodNinja] API_BASE =', API_BASE || '(relative / same-origin)'); 
+    console.log('[FoodNinja] Config loaded:', !!window.API_BASE);
+} catch (e) {}
 const imageInput = document.getElementById('imageInput');
 const uploadBtn = document.getElementById('uploadBtn');
 const cameraBtn = document.getElementById('cameraBtn');
