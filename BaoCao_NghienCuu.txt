@@ -1,0 +1,122 @@
+PHÁT TRIỂN HỆ THỐNG NHẬN DIỆN THỰC PHẨM VÀ TƯ VẤN DINH DƯỠNG THÔNG MINH 
+SỬ DỤNG TÍCH HỢP COMPUTER VISION VÀ NATURAL LANGUAGE PROCESSING
+
+DEVELOPMENT OF AN INTELLIGENT FOOD RECOGNITION AND NUTRITIONAL ADVISORY SYSTEM 
+USING COMPUTER VISION AND NATURAL LANGUAGE PROCESSING INTEGRATION
+
+Tác giả: [Tên tác giả]
+Cơ quan: [Tên trường/viện]
+Email: [email@example.com]
+Ngày hoàn thành: 10/08/2025
+
+TÓM TẮT
+
+Nghiên cứu này trình bày việc phát triển một hệ thống thông minh nhận diện thực phẩm và tư vấn dinh dưỡng tự động, được thiết kế để hỗ trợ người dùng trong việc theo dõi chế độ ăn uống và đưa ra quyết định dinh dưỡng có cơ sở khoa học. Hệ thống tích hợp ba thành phần công nghệ chính: (1) mô-đun nhận diện ảnh thực phẩm sử dụng Clarifai Computer Vision API, (2) cơ sở dữ liệu dinh dưỡng CalorieNinjas, và (3) mô hình xử lý ngôn ngữ tự nhiên Cohere cho phân tích và tư vấn. Kiến trúc hệ thống được thiết kế theo mô hình client-server với frontend Progressive Web Application (PWA) triển khai trên Netlify và backend Flask API trên Render. Để đảm bảo độ tin cậy, nghiên cứu áp dụng ngưỡng confidence 40% cho kết quả nhận diện và tích hợp cơ chế lưu trữ lịch sử cục bộ. Kết quả thử nghiệm cho thấy hệ thống đạt được trải nghiệm người dùng tốt trên cả desktop và mobile, với khả năng triển khai chi phí thấp và tính mở rộng cao. Nghiên cứu đóng góp vào lĩnh vực ứng dụng AI trong y tế dự phòng và dinh dưỡng cộng đồng.
+
+Từ khóa: nhận diện thực phẩm, computer vision, natural language processing, dinh dưỡng thông minh, progressive web application
+
+ABSTRACT
+
+This study presents the development of an intelligent food recognition and nutritional advisory system designed to assist users in dietary monitoring and evidence-based nutritional decision-making. The system integrates three core technological components: (1) a food image recognition module using Clarifai Computer Vision API, (2) CalorieNinjas nutritional database, and (3) Cohere Natural Language Processing model for analysis and consultation. The system architecture follows a client-server model with a Progressive Web Application (PWA) frontend deployed on Netlify and a Flask API backend on Render. To ensure reliability, the study implements a 40% confidence threshold for recognition results and integrates local history storage mechanisms. Experimental results demonstrate good user experience across desktop and mobile platforms, with low-cost deployment capability and high scalability. This research contributes to the field of AI applications in preventive healthcare and community nutrition.
+
+Keywords: food recognition, computer vision, natural language processing, intelligent nutrition, progressive web application
+
+1. GIỚI THIỆU
+
+1.1. Bối cảnh nghiên cứu
+
+Theo Tổ chức Y tế Thế giới (WHO), các bệnh không lây nhiễm liên quan đến chế độ ăn uống như béo phì, tiểu đường type 2, và bệnh tim mạch đang gia tăng nhanh chóng trên toàn cầu [1]. Việc theo dõi và quản lý chế độ ăn uống đóng vai trò quan trọng trong phòng ngừa các bệnh này. Tuy nhiên, các phương pháp truyền thống như ghi chép thủ công hoặc sử dụng các ứng dụng yêu cầu nhập liệu phức tạp thường gặp phải tỷ lệ tuân thủ thấp từ người dùng [2].
+
+Sự phát triển của trí tuệ nhân tạo, đặc biệt là computer vision và natural language processing, đã mở ra những cơ hội mới trong việc tự động hóa quá trình theo dõi dinh dưỡng. Các nghiên cứu gần đây cho thấy khả năng ứng dụng deep learning trong nhận diện thực phẩm đạt độ chính xác cao [3,4], trong khi các mô hình ngôn ngữ lớn đã chứng minh hiệu quả trong việc cung cấp tư vấn y tế có cơ sở [5].
+
+1.2. Khoảng trống nghiên cứu
+
+Mặc dù đã có nhiều nghiên cứu về nhận diện thực phẩm và các ứng dụng dinh dưỡng riêng biệt, vẫn còn thiếu các hệ thống tích hợp đầy đủ có khả năng: (1) nhận diện thực phẩm từ ảnh với độ tin cậy cao, (2) tự động tra cứu thông tin dinh dưỡng, (3) cung cấp phân tích và tư vấn cá nhân hóa, và (4) triển khai với chi phí thấp cho người dùng phổ thông.
+
+1.3. Mục tiêu nghiên cứu
+
+Nghiên cứu này nhằm phát triển một hệ thống tích hợp có khả năng:
+- Nhận diện món ăn từ ảnh do người dùng cung cấp với độ chính xác và tin cậy cao
+- Tự động truy vấn thông tin dinh dưỡng chi tiết từ cơ sở dữ liệu chuẩn
+- Tạo phân tích và gợi ý dinh dưỡng cá nhân hóa sử dụng AI
+- Cung cấp trải nghiệm người dùng tối ưu trên cả desktop và mobile
+- Đảm bảo khả năng triển khai chi phí thấp và tính bảo mật dữ liệu
+
+4) KIẾN TRÚC HỆ THỐNG
+- Frontend (Netlify): HTML/CSS/JS thuần; UI hiện đại, responsive; kéo-thả, tải ảnh, chụp ảnh; spinner; kết quả; chatbot nổi; PWA (manifest + service worker); cấu hình API_BASE qua config.js.
+- Backend (Render, Flask):
+  + Endpoints: /predict (POST ảnh), /chat (POST tin nhắn), /ask_ai (POST), /(GET health).
+  + CORS theo allow-list (ALLOWED_ORIGINS) hoặc * khi debug; MAX_CONTENT_LENGTH=10MB; trả JSON rõ ràng cho lỗi 413.
+  + Biến môi trường: COHERE_API_KEY, CLARIFAI_PAT, CALORIE_API_KEY, ALLOWED_ORIGINS.
+- Dịch vụ ngoài:
+  + Clarifai food-item-recognition: phân loại món ăn từ ảnh, trả về tên + xác suất.
+  + CalorieNinjas: tra cứu dinh dưỡng dựa trên tên món ăn.
+  + Cohere (model command-a-03-2025): phân tích văn bản/QA.
+- Triển khai: Frontend trên Netlify (tĩnh, HTTPS); Backend trên Render (Gunicorn/Flask, HTTPS). CORS khớp domain Netlify.
+
+5) PHƯƠNG PHÁP VÀ MÔ HÌNH
+- Nhận diện ảnh: Gọi Clarifai với bytes ảnh (Model URL: https://clarifai.com/clarifai/main/models/food-item-recognition). Lấy concept đầu có xác suất cao nhất.
+- Dinh dưỡng: Gọi CalorieNinjas qua header X-Api-Key với query là tên món ăn; nhận JSON các trường dinh dưỡng.
+- Phân tích AI: Ghép prompt ngắn gọn gồm tên món + JSON dinh dưỡng; gọi Cohere chat (model command-a-03-2025) để tạo gợi ý.
+- Ngưỡng tự tin: Nếu probability < 0.40 (40%), không hiển thị chi tiết/AI; thông báo “Không nhận diện được, vui lòng thử lại!”.
+
+6) CÀI ĐẶT VÀ THỰC THI
+- Cấu trúc chính (rút gọn):
+  Nutrition Food/
+    - index.html, modern.css, main.js, config.js, manifest.webmanifest, service-worker.js, icon.svg
+  Backend Flask: app.py (trong thư mục Nutrition Food/ trong repo này)
+- Biến môi trường (Render):
+  COHERE_API_KEY=...; CLARIFAI_PAT=...; CALORIE_API_KEY=...;
+  ALLOWED_ORIGINS=https://<site>.netlify.app
+- Endpoints:
+  POST /predict: form-data field image (file ảnh). Kết quả: { food_name, probability, nutrition, ai_answer }.
+  POST /chat: JSON { message }. Kết quả: { response }.
+  POST /ask_ai: JSON { prompt }. Kết quả: { result }.
+  GET /: { status: "ok", ... }.
+- Luồng xử lý /predict:
+  Ảnh → Clarifai → tên món + xác suất → (nếu có key) CalorieNinjas → JSON dinh dưỡng → prompt → Cohere → ai_answer → trả JSON.
+- PWA: manifest.webmanifest + service-worker.js; banner cài đặt; fallback hướng dẫn iOS.
+
+7) GIAO DIỆN VÀ TRẢI NGHIỆM
+- Kéo-thả ảnh, nút tải ảnh, chụp ảnh (getUserMedia, facingMode=environment), khung preview.
+- Spinner khi xử lý; thẻ kết quả; thẻ phân tích AI bên dưới.
+- Chatbot nổi: hộp hội thoại, nút mở/đóng; lưu lịch sử chat trong localStorage; panel lịch sử có thể bật/tắt và xoá.
+- Lịch sử nhận diện toàn cục: lưu tên món + xác suất + tóm tắt AI (nếu có) trong localStorage; có panel bật/tắt và xoá.
+- Nút “Tải ứng dụng” (PWA) ở cạnh dưới màn hình; iOS có hướng dẫn Add to Home Screen.
+
+8) ĐÁNH GIÁ VÀ KIỂM THỬ (định tính)
+- Hiệu năng: Phụ thuộc vào dịch vụ ngoài (Clarifai/Cohere/CalorieNinjas) và Render cold start; đã giảm lỗi bằng giới hạn 10MB, thông báo lỗi 413 rõ ràng.
+- Độ chính xác: Ràng buộc bởi model Clarifai; ngưỡng 40% giảm rủi ro trả lời sai. Có thể tăng ngưỡng hoặc yêu cầu chụp ảnh rõ hơn.
+- Tính ổn định: CORS theo allow-list, endpoints rõ ràng; log lỗi gợi ý chẩn đoán.
+
+9) HẠN CHẾ
+- Phụ thuộc dịch vụ ngoài (quota/độ ổn định/độ phủ món ăn).
+- Dinh dưỡng theo tên món có sai số do cách chế biến/khẩu phần.
+- PWA bị hạn chế một số API trên iOS (push/background).
+
+10) HƯỚNG PHÁT TRIỂN
+- Kỹ thuật: Cache dinh dưỡng theo tên món; rate limit /predict và /chat; ghi log có cấu trúc; test tự động.
+- Trải nghiệm: Đa ngôn ngữ; lưu bộ sưu tập món đã tra; chia sẻ kết quả; tuỳ chọn ngưỡng nhận diện trong UI.
+- Mô hình: Nhận diện nhiều món/đối tượng trong cùng ảnh; fine-tune/cascade model; phân tích khẩu phần (portion estimation).
+- Phát hành: Đóng gói TWA/Capacitor lên Play Store/App Store.
+
+11) KẾT LUẬN
+- Đề tài chứng minh tính khả thi của việc kết hợp CV + NLP trên nền web hiện đại để hỗ trợ người dùng tra cứu dinh dưỡng và gợi ý ăn uống. Hệ thống nhẹ, rẻ, dễ mở rộng; đáp ứng tốt nhu cầu sử dụng di động thông qua PWA.
+
+12) PHỤ LỤC
+A. Ví dụ JSON /predict (rút gọn):
+{
+  "food_name": "apple",
+  "probability": 0.87,
+  "nutrition": { ... },
+  "ai_answer": "Táo giàu chất xơ..."
+}
+
+B. Cấu hình cần thiết
+- Netlify: Thư mục publish = "Nutrition Food"; config.js: window.API_BASE = 'https://<backend>.onrender.com'.
+- Render: ALLOWED_ORIGINS = https://<site>.netlify.app; set API keys; redeploy.
+
+C. Tài liệu tham khảo
+- Clarifai Food Item Recognition: https://clarifai.com/clarifai/main/models/food-item-recognition
+- CalorieNinjas API: https://calorieninjas.com/api
+- Cohere Chat API: https://docs.cohere.com/

@@ -1,0 +1,16 @@
+flowchart TD
+  A["Nhận ảnh từ client"] --> B["Gọi Clarifai"]
+  B --> C["Lấy dự đoán top-1: (food, prob)"]
+  C -->|prob < MIN_CONFIDENCE| D["Trả về low_confidence:true<br/>message + top-3 alternatives<br/>BỎ QUA gọi dinh dưỡng/AI"]
+  C -->|prob >= MIN_CONFIDENCE| E["Gọi CalorieNinjas"]
+  E --> F["Gọi Cohere (phân tích)"]
+  F --> G["Trả JSON: food, prob, nutrition, ai_answer"]
+
+  D --> H["Frontend hiển thị cảnh báo + chip gợi ý"]
+  H --> I["Optional: /ask_ai với món gợi ý"]
+  I --> J["Hiển thị trả lời AI (tổng quan)"]
+
+  classDef good fill:#e8f5e9,stroke:#66bb6a,color:#2e7d32;
+  classDef warn fill:#fff8e1,stroke:#ffb74d,color:#ef6c00;
+  class D,H warn;
+  class G good;

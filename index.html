@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FoodNinja - Nhận diện món ăn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="modern.css" />
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">🍽️ FoodNinja</h1>
+    <p class="subtitle">Nhận diện món ăn &amp; tư vấn dinh dưỡng hiện đại</p>
+
+    <div class="main-content">
+      <!-- Cột thao tác: Upload/Camera/Drag & Drop -->
+      <div class="action-col">
+        <div id="uploadBox" class="upload-box" tabindex="0" role="button" aria-label="Kéo thả hoặc chọn ảnh để nhận diện">
+          <span class="upload-icon" aria-hidden="true">📷</span>
+          <label for="imageInput" class="sr-only">Chọn ảnh để nhận diện thực phẩm</label>
+          <input type="file" id="imageInput" accept="image/*" capture="environment" class="hidden-input" title="Chọn ảnh thực phẩm" placeholder="Chọn ảnh thực phẩm" />
+          <button id="uploadBtn" class="btn btn-accent" type="button">Tải ảnh lên</button>
+          <span class="or">hoặc</span>
+          <button id="cameraBtn" class="btn btn-main" type="button">Chụp ảnh</button>
+        </div>
+        <div class="help-text">Kéo & thả ảnh vào khung trên để nhận diện nhanh</div>
+
+        <div class="media-frame-wrapper">
+          <video id="video" class="hidden media-frame" autoplay playsinline muted title="Camera feed để chụp ảnh thực phẩm"></video>
+          <canvas id="canvas" class="hidden media-frame" aria-label="Ảnh đã chụp từ camera"></canvas>
+        </div>
+        <button id="captureBtn" class="btn btn-main hidden" type="button">Chụp</button>
+      </div>
+
+      <!-- Cột xem trước ảnh -->
+      <div class="preview-col">
+        <div id="imagePreview" class="image-preview" aria-label="Xem trước ảnh"></div>
+      </div>
+    </div>
+
+    <!-- Khu vực hiển thị kết quả -->
+    <div id="result" class="result-box" aria-live="polite"></div>
+
+    <!-- Lịch sử nhận diện (toàn cục) -->
+    <div class="history-controls">
+      <button id="toggleGlobalHistory" class="btn btn-accent btn-small" type="button">Lịch sử nhận diện</button>
+      <button id="clearGlobalHistory" class="btn btn-accent btn-small" type="button">Xoá</button>
+    </div>
+    <div id="globalHistoryPanel" class="history-panel hidden" aria-hidden="true"></div>
+  </div>
+
+  <!-- Chatbot nổi -->
+  <button id="openChatbot" class="chatbot-fab" title="Chat với AI" aria-label="Mở chatbot">💬</button>
+  <div id="chatbotBox" class="chatbot-box" role="dialog" aria-modal="true" aria-labelledby="chatbotTitle">
+    <div class="chatbot-header">
+      <span id="chatbotTitle">🤖 FoodNinja AI Chatbot</span>
+      <button id="closeChatbot" class="chatbot-close" aria-label="Đóng">×</button>
+    </div>
+    <div class="chatbot-tools">
+      <button id="toggleHistory" class="btn btn-accent btn-small" type="button">Lịch sử</button>
+      <button id="clearHistory" class="btn btn-accent btn-small" type="button" title="Xoá lịch sử chat trong trình duyệt">Xoá</button>
+    </div>
+    <div id="chatHistoryPanel" class="chat-history hidden" aria-hidden="true"></div>
+    <div id="chatbotMessages" class="chatbot-messages">
+      <div class="chatbot-msg chatbot-msg-ai">Xin chào! Bạn muốn hỏi gì về ẩm thực, sức khỏe, công nghệ?</div>
+    </div>
+    <form id="chatbotForm" class="chatbot-form" autocomplete="off">
+      <label for="chatbotInput" class="sr-only">Nhập câu hỏi cho AI</label>
+      <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Nhập câu hỏi cho AI..." title="Nhập câu hỏi cho AI để nhận tư vấn" required />
+      <button type="submit" class="btn btn-main">Gửi</button>
+    </form>
+  </div>
+
+  <!-- Install banner (PWA) cố định dưới màn hình -->
+  <div id="installBanner" class="install-banner hidden" role="region" aria-label="Cài đặt ứng dụng">
+    <div class="install-text" id="installText">Cài đặt FoodNinja để dùng như ứng dụng</div>
+    <button id="installBtn" class="btn btn-main btn-install" type="button">Tải ứng dụng</button>
+  </div>
+
+  <!-- Optional: override API base in config.js by setting window.API_BASE -->
+  <script src="config.js" defer></script>
+  <script src="main.js" defer></script>
+  <script defer>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').catch(console.error);
+      });
+    }
+  </script>
+</body>
+</html>

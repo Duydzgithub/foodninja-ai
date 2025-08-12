@@ -1,0 +1,23 @@
+sequenceDiagram
+  participant U as User
+  participant F as Frontend
+  participant B as Backend
+  participant CV as Clarifai
+  participant ND as CalorieNinjas
+  participant AI as Cohere
+
+  U->>F: Chọn/Chụp ảnh (preview)
+  F->>B: POST /predict (multipart image)
+  B->>CV: predict_by_bytes(image)
+  CV-->>B: concepts[] (name, probability)
+  alt Độ tin cậy < MIN_CONFIDENCE
+    B-->>F: JSON { low_confidence:true, message, alternatives[] }
+    F->>U: Hiện cảnh báo + gợi ý + nút Hỏi AI / Thử lại
+  else Độ tin cậy >= MIN_CONFIDENCE
+    B->>ND: GET /nutrition?query=food_name
+    ND-->>B: nutrition JSON
+    B->>AI: chat(prompt từ food_name + nutrition)
+    AI-->>B: ai_answer (text)
+    B-->>F: JSON { food_name, probability, nutrition, ai_answer }
+    F->>U: Hiển thị kết quả và phân tích AI
+  end

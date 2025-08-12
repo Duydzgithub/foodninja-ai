@@ -1,0 +1,12 @@
+{
+  "name": "nutrition-food-diagrams",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Render Mermaid diagrams to PNG/SVG for documentation.",
+  "scripts": {
+    "diagrams": "node docs/render-diagrams.js"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^10.9.1"
+  }
+}

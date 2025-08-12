@@ -1,0 +1,16 @@
+graph TD
+  U["Người dùng<br/>Mobile / Desktop"] -->|HTTPS| PWA["Frontend PWA - SPA<br/>HTML / CSS / JS"]
+  PWA -->|/predict - multipart-image| B["Flask Backend API"]
+  PWA -->|/chat - JSON| B
+  PWA -->|/ask_ai - JSON| B
+  
+  PWA <-->|Cache tĩnh| SW["Service Worker"]
+  PWA <-->|Lưu lịch sử| LS["LocalStorage"]
+
+  B -->|PAT| CV["Clarifai<br/>food-item-recognition"]
+  B -->|X-Api-Key| CN["CalorieNinjas<br/>Nutrition DB"]
+  B -->|API Key| CAI["Cohere<br/>LLM"]
+
+  B -. "CORS / Rate limit / Validation" .- PWA
+  classDef ext fill:#f7f7f7,stroke:#aaa,color:#333;
+  class CV,CN,CAI ext;
