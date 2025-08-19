@@ -1,0 +1,6 @@
+# API redirects to Render backend
+/predict https://foodninja-backend.onrender.com/predict 200
+/ask_ai https://foodninja-backend.onrender.com/ask_ai 200
+
+# SPA fallback for client-side routing
+/* /index.html 200
