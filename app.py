@@ -298,3 +298,9 @@ from werkzeug.exceptions import RequestEntityTooLarge
 @app.errorhandler(413)
 def handle_large_file(e: RequestEntityTooLarge):
     return jsonify({'error': 'File quá lớn, tối đa 10MB'}), 413
+
+# Main entry point
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    print(f"[INFO] Starting Food Ninja Backend on port {port}")
+    app.run(host='0.0.0.0', port=port, debug=False)
