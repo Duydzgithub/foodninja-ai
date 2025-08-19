@@ -31,11 +31,265 @@ const resultDiv = document.getElementById('result');
 const imagePreview = document.getElementById('imagePreview');
 const mediaWrapper = document.querySelector('.media-frame-wrapper');
 let imageBlob = null;
-// PWA install hooks
+// PWA install hooks and AI Assistant state
 let deferredPrompt = null;
+let fabMenuOpen = false;
+let assistantOpen = false;
 const installBanner = document.getElementById('installBanner');
 const installBtn = document.getElementById('installBtn');
 const installText = document.getElementById('installText');
+
+// AI Assistant Functions
+function openAssistant() {
+    const assistant = document.getElementById('aiAssistant');
+    if (assistant) {
+        assistant.classList.add('open');
+        assistantOpen = true;
+        closeFabMenu();
+    }
+}
+
+function closeAssistant() {
+    const assistant = document.getElementById('aiAssistant');
+    if (assistant) {
+        assistant.classList.remove('open');
+        assistantOpen = false;
+    }
+}
+
+function toggleFabMenu() {
+    const fabContainer = document.getElementById('fabContainer');
+    const fabIcon = document.querySelector('.fab i');
+    
+    if (fabMenuOpen) {
+        closeFabMenu();
+    } else {
+        openFabMenu();
+    }
+}
+
+function openFabMenu() {
+    const fabContainer = document.getElementById('fabContainer');
+    const fabIcon = document.querySelector('.fab i');
+    
+    if (fabContainer) {
+        fabContainer.classList.add('open');
+        if (fabIcon) {
+            fabIcon.className = 'fas fa-times';
+        }
+        fabMenuOpen = true;
+    }
+}
+
+function closeFabMenu() {
+    const fabContainer = document.getElementById('fabContainer');
+    const fabIcon = document.querySelector('.fab i');
+    
+    if (fabContainer) {
+        fabContainer.classList.remove('open');
+        if (fabIcon) {
+            fabIcon.className = 'fas fa-plus';
+        }
+        fabMenuOpen = false;
+    }
+}
+
+function sendMessage() {
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+    
+    if (!chatInput || !chatMessages) return;
+    
+    const message = chatInput.value.trim();
+    if (!message) return;
+    
+    // Add user message
+    addChatMessage(message, 'user');
+    chatInput.value = '';
+    
+    // Simulate AI response (replace with actual AI integration)
+    setTimeout(() => {
+        const aiResponse = generateAIResponse(message);
+        addChatMessage(aiResponse, 'ai');
+    }, 1000);
+}
+
+function addChatMessage(message, sender) {
+    const chatMessages = document.getElementById('chatMessages');
+    if (!chatMessages) return;
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}-message`;
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'message-avatar';
+    avatar.innerHTML = sender === 'ai' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
+    
+    const content = document.createElement('div');
+    content.className = 'message-content';
+    content.textContent = message;
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(content);
+    chatMessages.appendChild(messageDiv);
+    
+    // Scroll to bottom
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function quickQuestion(type) {
+    const questions = {
+        calories: 'Thực phẩm này có bao nhiêu calories?',
+        protein: 'Hàm lượng protein trong thực phẩm này là bao nhiêu?',
+        vitamins: 'Thực phẩm này chứa vitamin gì?',
+        diet: 'Thực phẩm này có phù hợp với chế độ ăn kiêng không?'
+    };
+    
+    const question = questions[type];
+    if (question) {
+        const chatInput = document.getElementById('chatInput');
+        if (chatInput) {
+            chatInput.value = question;
+            sendMessage();
+        }
+    }
+}
+
+function generateAIResponse(message) {
+    // Simple AI response simulation (replace with actual AI integration)
+    const responses = {
+        default: "Tôi đang phân tích yêu cầu của bạn. Hãy gửi ảnh thực phẩm để tôi có thể đưa ra phân tích chính xác nhất!",
+        calories: "Để tính toán chính xác calories, tôi cần phân tích ảnh thực phẩm. Hãy chụp ảnh hoặc tải lên một bức ảnh nhé!",
+        protein: "Hàm lượng protein phụ thuộc vào loại thực phẩm và khối lượng. Gửi ảnh để tôi phân tích chi tiết!",
+        vitamins: "Mỗi loại thực phẩm có thành phần vitamin khác nhau. Hãy cho tôi xem ảnh thực phẩm để phân tích cụ thể!",
+        diet: "Tôi có thể tư vấn về tính phù hợp với chế độ ăn khi biết cụ thể thực phẩm nào. Gửi ảnh nhé!"
+    };
+    
+    // Simple keyword matching
+    for (const [key, response] of Object.entries(responses)) {
+        if (key !== 'default' && message.toLowerCase().includes(key)) {
+            return response;
+        }
+    }
+    
+    return responses.default;
+}
+
+function shareResults() {
+    if (navigator.share && imageBlob) {
+        navigator.share({
+            title: 'Food Ninja - Phân tích dinh dưỡng',
+            text: 'Xem kết quả phân tích dinh dưỡng thực phẩm từ Food Ninja AI',
+            url: window.location.href
+        }).catch(console.error);
+    } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            showToast('Đã sao chép link chia sẻ!');
+        }).catch(() => {
+            showToast('Không thể chia sẻ lúc này');
+        });
+    }
+    closeFabMenu();
+}
+
+function downloadReport() {
+    // Generate and download nutrition report
+    if (!imageBlob) {
+        showToast('Chưa có kết quả để tải xuống');
+        return;
+    }
+    
+    // Simple implementation - create a text report
+    const report = generateNutritionReport();
+    const blob = new Blob([report], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `nutrition-report-${new Date().toISOString().split('T')[0]}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    closeFabMenu();
+}
+
+function openHelp() {
+    showToast('Tính năng trợ giúp sẽ có trong phiên bản tiếp theo!');
+    closeFabMenu();
+}
+
+function generateNutritionReport() {
+    return `FOOD NINJA - BÁO CÁO DINH DƯỠNG
+======================================
+Ngày tạo: ${new Date().toLocaleDateString('vi-VN')}
+Thời gian: ${new Date().toLocaleTimeString('vi-VN')}
+
+Thông tin phân tích:
+- Ứng dụng: Food Ninja AI
+- Công nghệ: AI nhận diện thực phẩm
+- Độ chính xác: Cao
+
+Ghi chú:
+Báo cáo này được tạo tự động bởi AI.
+Để có thông tin chi tiết, vui lòng sử dụng ứng dụng.
+
+© 2024 Food Ninja - AI Nutrition Analysis`;
+}
+
+function showToast(message) {
+    // Simple toast notification
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 25px;
+        z-index: 10000;
+        font-size: 14px;
+        animation: slideUp 0.3s ease-out;
+    `;
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'slideDown 0.3s ease-out';
+        setTimeout(() => document.body.removeChild(toast), 300);
+    }, 2000);
+}
+
+// Add event listeners for chat input
+document.addEventListener('DOMContentLoaded', () => {
+    const chatInput = document.getElementById('chatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    }
+    
+    // Close assistant when clicking outside
+    document.addEventListener('click', (e) => {
+        const assistant = document.getElementById('aiAssistant');
+        const fabContainer = document.getElementById('fabContainer');
+        
+        if (assistantOpen && assistant && !assistant.contains(e.target)) {
+            closeAssistant();
+        }
+        
+        if (fabMenuOpen && fabContainer && !fabContainer.contains(e.target)) {
+            closeFabMenu();
+        }
+    });
+});
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();

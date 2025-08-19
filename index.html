@@ -1,82 +1,466 @@
-<!DOCTYPE html>
+<!DOCTYP  <link rel="stylesheet" href="professional.css"> html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FoodNinja - Nhận diện món ăn</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <title>FoodNinja - AI-Powered Food Recognition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="modern.css" />
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#4CAF50">
+  <meta name="description" content="AI-powered food recognition app with nutrition analysis and dietary recommendations">
 </head>
 <body>
-  <div class="container">
-    <h1 class="title">🍽️ FoodNinja</h1>
-    <p class="subtitle">Nhận diện món ăn &amp; tư vấn dinh dưỡng hiện đại</p>
-
-    <div class="main-content">
-      <!-- Cột thao tác: Upload/Camera/Drag & Drop -->
-      <div class="action-col">
-        <div id="uploadBox" class="upload-box" tabindex="0" role="button" aria-label="Kéo thả hoặc chọn ảnh để nhận diện">
-          <span class="upload-icon" aria-hidden="true">📷</span>
-          <label for="imageInput" class="sr-only">Chọn ảnh để nhận diện thực phẩm</label>
-          <input type="file" id="imageInput" accept="image/*" capture="environment" class="hidden-input" title="Chọn ảnh thực phẩm" placeholder="Chọn ảnh thực phẩm" />
-          <button id="uploadBtn" class="btn btn-accent" type="button">Tải ảnh lên</button>
-          <span class="or">hoặc</span>
-          <button id="cameraBtn" class="btn btn-main" type="button">Chụp ảnh</button>
-        </div>
-        <div class="help-text">Kéo & thả ảnh vào khung trên để nhận diện nhanh</div>
-
-        <div class="media-frame-wrapper">
-          <video id="video" class="hidden media-frame" autoplay playsinline muted title="Camera feed để chụp ảnh thực phẩm"></video>
-          <canvas id="canvas" class="hidden media-frame" aria-label="Ảnh đã chụp từ camera"></canvas>
-        </div>
-        <button id="captureBtn" class="btn btn-main hidden" type="button">Chụp</button>
+  <!-- Professional Navigation Header -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <i class="fas fa-utensils nav-logo"></i>
+        <span class="brand-text">FoodNinja</span>
+        <span class="brand-tag">AI</span>
+      </div>
+      
+      <div class="nav-menu" id="navMenu">
+        <button class="nav-item active" data-section="scanner" aria-label="Food Scanner">
+          <i class="fas fa-camera"></i>
+          <span>Scanner</span>
+        </button>
+        <button class="nav-item" data-section="nutrition" aria-label="Nutrition Info">
+          <i class="fas fa-chart-pie"></i>
+          <span>Nutrition</span>
+        </button>
+        <button class="nav-item" data-section="history" aria-label="Analysis History">
+          <i class="fas fa-history"></i>
+          <span>History</span>
+        </button>
+        <button class="nav-item" data-section="assistant" aria-label="AI Assistant">
+          <i class="fas fa-robot"></i>
+          <span>Assistant</span>
+        </button>
       </div>
 
-      <!-- Cột xem trước ảnh -->
-      <div class="preview-col">
-        <div id="imagePreview" class="image-preview" aria-label="Xem trước ảnh"></div>
+      <div class="nav-actions">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
+  </nav>
 
-    <!-- Khu vực hiển thị kết quả -->
-    <div id="result" class="result-box" aria-live="polite"></div>
+  <!-- Main Application Container -->
+  <main class="app-container" role="main">
+    <!-- Hero Section with Modern Design -->
+    <section class="hero-section" id="scanner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-sparkles"></i>
+          <span>AI-Powered Recognition</span>
+        </div>
+        <h1 class="hero-title">
+          Discover Your <span class="gradient-text">Food's Story</span>
+        </h1>
+        <p class="hero-subtitle">
+          Advanced AI technology to identify ingredients, analyze nutrition, and provide personalized dietary recommendations
+        </p>
+      </div>
+    </section>
 
-    <!-- Lịch sử nhận diện (toàn cục) -->
-    <div class="history-controls">
-      <button id="toggleGlobalHistory" class="btn btn-accent btn-small" type="button">Lịch sử nhận diện</button>
-      <button id="clearGlobalHistory" class="btn btn-accent btn-small" type="button">Xoá</button>
+    <!-- Main Content Grid -->
+    <section class="content-grid">
+      <!-- Food Scanner Card -->
+      <div class="scanner-card glass-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-camera-retro"></i>
+            Food Scanner
+          </h2>
+          <p class="card-subtitle">Upload or capture food images for instant AI analysis</p>
+        </div>
+
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-camera-retro"></i>
+            Food Scanner
+          </h2>
+          <p class="card-subtitle">Upload or capture food images for instant AI analysis</p>
+        </div>
+
+        <div class="scanner-interface">
+          <!-- Professional Upload Zone -->
+          <div id="uploadBox" class="upload-zone" tabindex="0" role="button" aria-label="Drop or select images for food recognition">
+            <div class="upload-icon-wrapper">
+              <i class="fas fa-cloud-upload-alt upload-main-icon"></i>
+              <div class="upload-ripple"></div>
+            </div>
+            
+            <div class="upload-content">
+              <h3 class="upload-title">Drop your food image here</h3>
+              <p class="upload-text">or click to browse from your device</p>
+              
+              <div class="upload-actions">
+                <label for="imageInput" class="upload-btn primary">
+                  <i class="fas fa-images"></i>
+                  Choose File
+                </label>
+                <button id="cameraBtn" class="upload-btn secondary" type="button">
+                  <i class="fas fa-camera"></i>
+                  Take Photo
+                </button>
+              </div>
+              
+              <div class="upload-formats">
+                <span>Supports: JPG, PNG, WEBP (max 10MB)</span>
+              </div>
+            </div>
+            
+            <input type="file" id="imageInput" accept="image/*" capture="environment" class="hidden-input" title="Select food image" />
+          </div>
+
+          <!-- Camera Interface -->
+          <div class="camera-interface hidden" id="cameraInterface">
+            <div class="camera-frame">
+              <video id="video" class="camera-preview" autoplay playsinline muted title="Camera feed for food photography"></video>
+              <canvas id="canvas" class="hidden" aria-label="Captured food image"></canvas>
+              
+              <div class="camera-overlay">
+                <div class="focus-frame"></div>
+                <div class="camera-instructions">
+                  <i class="fas fa-bullseye"></i>
+                  <span>Center your food in the frame</span>
+                </div>
+              </div>
+              
+              <div class="camera-controls">
+                <button id="captureBtn" class="capture-btn" type="button">
+                  <i class="fas fa-camera"></i>
+                </button>
+                <button id="closeCameraBtn" class="camera-control-btn" type="button">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview & Results Card -->
+      <div class="results-card glass-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-search-plus"></i>
+            Analysis Results
+          </h2>
+          <p class="card-subtitle">AI-powered food recognition and nutritional insights</p>
+        </div>
+
+        <!-- Image Preview Section -->
+        <div class="preview-section">
+          <div id="imagePreview" class="image-preview-modern" aria-label="Food image preview">
+            <div class="preview-placeholder">
+              <i class="fas fa-image"></i>
+              <span>Image preview will appear here</span>
+            </div>
+          </div>
+          
+          <div class="preview-actions hidden" id="previewActions">
+            <button class="action-btn" id="analyzeBtn" type="button">
+              <i class="fas fa-brain"></i>
+              <span>Analyze Food</span>
+            </button>
+            <button class="action-btn secondary" id="retakeBtn" type="button">
+              <i class="fas fa-redo"></i>
+              <span>Retake</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Results Display -->
+        <div id="result" class="analysis-results hidden" aria-live="polite">
+          <div class="results-loading hidden" id="resultsLoading">
+            <div class="loading-spinner">
+              <div class="spinner-ring"></div>
+              <div class="spinner-ring"></div>
+              <div class="spinner-ring"></div>
+            </div>
+            <p>Analyzing your food with AI...</p>
+          </div>
+          
+          <div class="results-content hidden" id="resultsContent">
+            <!-- Dynamic results will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features-section">
+      <div class="section-header">
+        <h2 class="section-title">Why Choose FoodNinja?</h2>
+        <p class="section-subtitle">Advanced AI technology meets intuitive design</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>AI Recognition</h3>
+          <p>Advanced machine learning models trained on millions of food images</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Nutrition Analysis</h3>
+          <p>Detailed nutritional breakdown with calories, macros, and vitamins</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3>Health Insights</h3>
+          <p>Personalized dietary recommendations based on your food choices</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>Instant Results</h3>
+          <p>Get accurate food identification and analysis in under 3 seconds</p>
+        </div>
+      </div>
+    </section>
+
+    </section>
+  </main>
+
+  <!-- AI Assistant Sidebar -->
+  <aside class="ai-assistant" id="aiAssistant" role="complementary" aria-label="AI Assistant">
+    <div class="assistant-header">
+      <div class="assistant-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="assistant-info">
+        <h3>FoodNinja AI</h3>
+        <p class="assistant-status">
+          <span class="status-indicator active"></span>
+          Ready to help
+        </p>
+      </div>
+      <button class="assistant-close" id="closeAssistant" aria-label="Close assistant">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
-    <div id="globalHistoryPanel" class="history-panel hidden" aria-hidden="true"></div>
+
+    <div class="assistant-content">
+      <div class="chat-messages" id="chatMessages">
+        <div class="message ai-message">
+          <div class="message-avatar">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="message-content">
+            <p>Hello! I'm your AI nutrition assistant. Ask me anything about food, health, or nutrition!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <button class="quick-action" data-action="nutrition-tips">
+          <i class="fas fa-lightbulb"></i>
+          Nutrition Tips
+        </button>
+        <button class="quick-action" data-action="meal-suggestions">
+          <i class="fas fa-utensils"></i>
+          Meal Ideas
+        </button>
+        <button class="quick-action" data-action="health-analysis">
+          <i class="fas fa-heart"></i>
+          Health Analysis
+        </button>
+      </div>
+
+      <div class="chat-input-area">
+        <form id="chatbotForm" class="chat-form" autocomplete="off">
+          <div class="input-wrapper">
+            <input type="text" id="chatbotInput" class="chat-input" placeholder="Ask me about nutrition, ingredients, or health..." required />
+            <button type="submit" class="send-btn" aria-label="Send message">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </aside>
+
+  <!-- History Panel -->
+  <div class="history-panel" id="historyPanel">
+    <div class="panel-header">
+      <h3><i class="fas fa-history"></i> Analysis History</h3>
+      <div class="panel-actions">
+        <button class="panel-btn" id="clearHistory">
+          <i class="fas fa-trash"></i>
+          Clear All
+        </button>
+        <button class="panel-close" id="closeHistory">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <div class="panel-content" id="historyContent">
+      <div class="empty-state">
+        <i class="fas fa-clipboard-list"></i>
+        <p>No analysis history yet</p>
+        <span>Start by scanning your first food item!</span>
+      </div>
+    </div>
   </div>
 
-  <!-- Chatbot nổi -->
-  <button id="openChatbot" class="chatbot-fab" title="Chat với AI" aria-label="Mở chatbot">💬</button>
-  <div id="chatbotBox" class="chatbot-box" role="dialog" aria-modal="true" aria-labelledby="chatbotTitle">
-    <div class="chatbot-header">
-      <span id="chatbotTitle">🤖 FoodNinja AI Chatbot</span>
-      <button id="closeChatbot" class="chatbot-close" aria-label="Đóng">×</button>
+  <!-- Floating Action Button -->
+  <div class="fab-container">
+    <button class="fab" id="mainFab" aria-label="Quick actions">
+      <i class="fas fa-plus"></i>
+    </button>
+    
+    <div class="fab-menu" id="fabMenu">
+      <button class="fab-item" data-action="camera" aria-label="Take photo">
+        <i class="fas fa-camera"></i>
+        <span>Camera</span>
+      </button>
+      <button class="fab-item" data-action="upload" aria-label="Upload image">
+        <i class="fas fa-upload"></i>
+        <span>Upload</span>
+      </button>
+      <button class="fab-item" data-action="assistant" aria-label="AI Assistant">
+        <i class="fas fa-robot"></i>
+        <span>AI Chat</span>
+      </button>
+      <button class="fab-item" data-action="history" aria-label="View history">
+        <i class="fas fa-history"></i>
+        <span>History</span>
+      </button>
     </div>
-    <div class="chatbot-tools">
-      <button id="toggleHistory" class="btn btn-accent btn-small" type="button">Lịch sử</button>
-      <button id="clearHistory" class="btn btn-accent btn-small" type="button" title="Xoá lịch sử chat trong trình duyệt">Xoá</button>
-    </div>
-    <div id="chatHistoryPanel" class="chat-history hidden" aria-hidden="true"></div>
-    <div id="chatbotMessages" class="chatbot-messages">
-      <div class="chatbot-msg chatbot-msg-ai">Xin chào! Bạn muốn hỏi gì về ẩm thực, sức khỏe, công nghệ?</div>
-    </div>
-    <form id="chatbotForm" class="chatbot-form" autocomplete="off">
-      <label for="chatbotInput" class="sr-only">Nhập câu hỏi cho AI</label>
-      <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Nhập câu hỏi cho AI..." title="Nhập câu hỏi cho AI để nhận tư vấn" required />
-      <button type="submit" class="btn btn-main">Gửi</button>
-    </form>
   </div>
 
-  <!-- Install banner (PWA) cố định dưới màn hình -->
-  <div id="installBanner" class="install-banner hidden" role="region" aria-label="Cài đặt ứng dụng">
-    <div class="install-text" id="installText">Cài đặt FoodNinja để dùng như ứng dụng</div>
-    <button id="installBtn" class="btn btn-main btn-install" type="button">Tải ứng dụng</button>
+  <!-- AI Assistant -->
+  <div class="ai-assistant" id="aiAssistant">
+    <div class="assistant-header">
+      <div class="assistant-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="assistant-info">
+        <h3>Nutrition AI</h3>
+        <div class="assistant-status">
+          <div class="status-indicator active"></div>
+          <span>Online và sẵn sàng hỗ trợ</span>
+        </div>
+      </div>
+      <button class="assistant-close" onclick="closeAssistant()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="assistant-content">
+      <div class="quick-actions">
+        <button class="quick-action" onclick="quickQuestion('calories')">
+          <i class="fas fa-fire"></i>Calories trong thực phẩm
+        </button>
+        <button class="quick-action" onclick="quickQuestion('protein')">
+          <i class="fas fa-dumbbell"></i>Hàm lượng protein
+        </button>
+        <button class="quick-action" onclick="quickQuestion('vitamins')">
+          <i class="fas fa-pills"></i>Vitamin và khoáng chất
+        </button>
+        <button class="quick-action" onclick="quickQuestion('diet')">
+          <i class="fas fa-apple-alt"></i>Tư vấn chế độ ăn
+        </button>
+      </div>
+      
+      <div class="chat-messages" id="chatMessages">
+        <div class="message ai-message">
+          <div class="message-avatar">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="message-content">
+            Xin chào! Tôi là AI dinh dưỡng. Hãy gửi ảnh thực phẩm hoặc đặt câu hỏi về dinh dưỡng nhé!
+          </div>
+        </div>
+      </div>
+      
+      <div class="chat-input-area">
+        <div class="input-wrapper">
+          <input type="text" class="chat-input" placeholder="Đặt câu hỏi về dinh dưỡng..." id="chatInput">
+          <button class="send-btn" onclick="sendMessage()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Action Button -->
+  <div class="fab-container" id="fabContainer">
+    <div class="fab-menu">
+      <div class="fab-item" onclick="openAssistant()">
+        <i class="fas fa-robot"></i>
+        <span>AI Assistant</span>
+      </div>
+      <div class="fab-item" onclick="shareResults()">
+        <i class="fas fa-share"></i>
+        <span>Chia sẻ</span>
+      </div>
+      <div class="fab-item" onclick="downloadReport()">
+        <i class="fas fa-download"></i>
+        <span>Tải báo cáo</span>
+      </div>
+      <div class="fab-item" onclick="openHelp()">
+        <i class="fas fa-question"></i>
+        <span>Trợ giúp</span>
+      </div>
+    </div>
+    <button class="fab" onclick="toggleFabMenu()">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+
+  <!-- PWA Install Banner -->
+  <div id="installBanner" class="install-banner hidden" role="region" aria-label="Install application">
+    <div class="install-content">
+      <div class="install-icon">
+        <i class="fas fa-download"></i>
+      </div>
+      <div class="install-text">
+        <h4>Install FoodNinja</h4>
+        <p>Get the full app experience on your device</p>
+      </div>
+      <div class="install-actions">
+        <button id="installBtn" class="install-btn">
+          <i class="fas fa-plus"></i>
+          Install
+        </button>
+        <button id="dismissInstall" class="install-dismiss">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Loading Overlay -->
+  <div class="loading-overlay hidden" id="globalLoading">
+    <div class="loading-content">
+      <div class="loading-animation">
+        <div class="loading-circle"></div>
+        <div class="loading-circle"></div>
+        <div class="loading-circle"></div>
+      </div>
+      <p class="loading-text">Processing your food image...</p>
+    </div>
   </div>
 
   <!-- Inline config for reliable loading -->
