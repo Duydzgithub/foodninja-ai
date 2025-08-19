@@ -2,9 +2,15 @@
 [build]
   publish = "."
   command = ""
+  ignore = "python-backend/"
 
 [build.environment]
   NODE_VERSION = "18"
+  NPM_VERSION = "9"
+
+# Ignore Python files during build
+[build.processing]
+  skip_processing = false
 
 # Security Headers
 [[headers]]
