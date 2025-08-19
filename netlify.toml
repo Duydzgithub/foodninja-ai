@@ -12,6 +12,14 @@
 [build.processing]
   skip_processing = false
 
+# Don't process Python files in Netlify
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
+
+[functions]
+  # Disable functions to avoid Python detection
+  directory = "non-existent"
+
 # Security Headers
 [[headers]]
   for = "/*"

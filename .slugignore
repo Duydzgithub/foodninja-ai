@@ -1,0 +1,27 @@
+# Files to ignore during Render build
+*.md
+*.txt
+LICENSE
+docs/
+.git/
+.vscode/
+.idea/
+node_modules/
+package*.json
+.nvmrc
+netlify.toml
+_headers
+_redirects
+.htaccess
+*.css
+*.js
+*.html
+*.svg
+*.webmanifest
+modern.css
+professional.css
+service-worker.js
+main.js
+index.html
+manifest.webmanifest
+icon.svg
