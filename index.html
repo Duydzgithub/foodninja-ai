@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Ninja - AI Phân Tích Dinh Dưỡng</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Ứng dụng AI phân tích dinh dưỡng thực phẩm - Upload ảnh để nhận diện món ăn và nhận tư vấn sức khỏe">
+    <meta name="keywords" content="AI, dinh dưỡng, thực phẩm, sức khỏe, phân tích, food ninja, nutrition">
+    <meta name="author" content="Food Ninja Team">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Vietnamese">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Food Ninja - AI Phân Tích Dinh Dưỡng">
+    <meta property="og:description" content="Upload ảnh món ăn để AI phân tích dinh dưỡng và tư vấn sức khỏe">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://foodninja.app">
+    <meta property="og:image" content="./assets/icons/icon-512x512.svg">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:site_name" content="Food Ninja">
+    <meta property="og:locale" content="vi_VN">
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Food Ninja - AI Phân Tích Dinh Dưỡng">
+    <meta name="twitter:description" content="Upload ảnh món ăn để AI phân tích dinh dưỡng và tư vấn sức khỏe">
+    <meta name="twitter:image" content="./assets/icons/icon-512x512.svg">
+    
+    <!-- PWA Meta tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="background-color" content="#FFFFFF">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Food Ninja">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Food Ninja">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="72x72" href="./assets/icons/icon-72x72.svg">
+    <link rel="apple-touch-icon" sizes="96x96" href="./assets/icons/icon-96x96.svg">
+    <link rel="apple-touch-icon" sizes="128x128" href="./assets/icons/icon-128x128.svg">
+    <link rel="apple-touch-icon" sizes="144x144" href="./assets/icons/icon-144x144.svg">
+    <link rel="apple-touch-icon" sizes="152x152" href="./assets/icons/icon-152x152.svg">
+    <link rel="apple-touch-icon" sizes="192x192" href="./assets/icons/icon-192x192.svg">
+    <link rel="apple-touch-icon" sizes="384x384" href="./assets/icons/icon-384x384.svg">
+    <link rel="apple-touch-icon" sizes="512x512" href="./assets/icons/icon-512x512.svg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
+    <link rel="icon" type="image/svg" href="./assets/icons/icon-32x32.svg">
+    <link rel="shortcut icon" href="./assets/icons/favicon.ico">
+    
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#FF6B35">
+    <meta name="msapplication-TileImage" content="./assets/icons/icon-144x144.svg">
+    <meta name="msapplication-config" content="./browserconfig.xml">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/landing.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <div class="logo-icon me-2">
+                    <i class="fas fa-utensils text-primary"></i>
+                </div>
+                <span class="fw-bold text-dark">Food Ninja</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Tính năng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">Cách sử dụng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Đánh giá</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a href="app.html" class="btn btn-primary btn-sm px-3">
+                            <i class="fas fa-rocket me-2"></i>Bắt đầu
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg">
+            <div class="floating-food" data-aos="fade-up" data-aos-delay="200">🍎</div>
+            <div class="floating-food" data-aos="fade-up" data-aos-delay="400">🥗</div>
+            <div class="floating-food" data-aos="fade-up" data-aos-delay="600">🍌</div>
+            <div class="floating-food" data-aos="fade-up" data-aos-delay="800">🥑</div>
+        </div>
+        
+        <div class="container">
+            <div class="row align-items-center min-vh-100 py-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="hero-content">
+                        <h1 class="hero-title mb-4">
+                            Phân tích dinh dưỡng 
+                            <span class="text-primary">thông minh</span> 
+                            với AI
+                        </h1>
+                        <p class="hero-subtitle mb-4">
+                            Chỉ cần chụp ảnh món ăn, AI sẽ nhận diện và phân tích 
+                            thông tin dinh dưỡng chi tiết, đưa ra lời khuyên sức khỏe cá nhân hóa.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="app.html" class="btn btn-primary btn-lg me-3 mb-3">
+                                <i class="fas fa-camera me-2"></i>
+                                Thử ngay miễn phí
+                            </a>
+                            <button class="btn btn-outline-primary btn-lg mb-3" onclick="scrollToDemo()">
+                                <i class="fas fa-play me-2"></i>
+                                Xem demo
+                            </button>
+                        </div>
+                        <div class="hero-stats mt-4">
+                            <div class="d-flex flex-wrap gap-4">
+                                <div class="stat-item">
+                                    <span class="stat-number">10,000+</span>
+                                    <span class="stat-label">Món ăn đã phân tích</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">95%</span>
+                                    <span class="stat-label">Độ chính xác</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">5,000+</span>
+                                    <span class="stat-label">Người dùng tin tưởng</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                    <div class="hero-image-container">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="demo-interface">
+                                    <div class="demo-header">
+                                        <div class="demo-title">Food Ninja</div>
+                                        <div class="demo-subtitle">AI Nutrition Analysis</div>
+                                    </div>
+                                    <div class="demo-camera-area">
+                                        <div class="camera-icon">
+                                            <i class="fas fa-camera"></i>
+                                        </div>
+                                        <div class="demo-text">Chụp ảnh món ăn</div>
+                                    </div>
+                                    <div class="demo-results">
+                                        <div class="result-item">
+                                            <span class="food-name">🍎 Táo đỏ</span>
+                                            <span class="confidence">95% confident</span>
+                                        </div>
+                                        <div class="nutrition-preview">
+                                            <div class="nutrition-item">
+                                                <span>Calories</span>
+                                                <span>95 kcal</span>
+                                            </div>
+                                            <div class="nutrition-item">
+                                                <span>Protein</span>
+                                                <span>0.5g</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating elements -->
+                        <div class="floating-elements">
+                            <div class="floating-card card-1" data-aos="zoom-in" data-aos-delay="400">
+                                <i class="fas fa-brain text-primary"></i>
+                                <span>AI Recognition</span>
+                            </div>
+                            <div class="floating-card card-2" data-aos="zoom-in" data-aos-delay="600">
+                                <i class="fas fa-chart-line text-success"></i>
+                                <span>Nutrition Analysis</span>
+                            </div>
+                            <div class="floating-card card-3" data-aos="zoom-in" data-aos-delay="800">
+                                <i class="fas fa-comments text-info"></i>
+                                <span>AI Advice</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="1000">
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <span>Cuộn xuống để khám phá</span>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">
+                        Tính năng <span class="text-primary">đột phá</span>
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                        Công nghệ AI tiên tiến kết hợp với cơ sở dữ liệu dinh dưỡng lớn nhất thế giới
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h4>Nhận diện thông minh</h4>
+                        <p>AI nhận diện hơn 10,000 loại thực phẩm với độ chính xác 95%. Chỉ cần chụp ảnh là có kết quả ngay lập tức.</p>
+                        <div class="feature-highlight">
+                            <span class="badge bg-primary">Clarifai AI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h4>Phân tích dinh dưỡng</h4>
+                        <p>Thông tin chi tiết về calories, protein, carbs, fats, vitamins và khoáng chất. Dữ liệu chính xác từ USDA.</p>
+                        <div class="feature-highlight">
+                            <span class="badge bg-success">CalorieNinjas API</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4>AI Tư vấn cá nhân</h4>
+                        <p>Chatbot AI thông minh đưa ra lời khuyên dinh dưỡng phù hợp với từng người, dựa trên dữ liệu khoa học.</p>
+                        <div class="feature-highlight">
+                            <span class="badge bg-info">Cohere AI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>Progressive Web App</h4>
+                        <p>Trải nghiệm như ứng dụng native, hoạt động offline, có thể cài đặt trên điện thoại mà không cần App Store.</p>
+                        <div class="feature-highlight">
+                            <span class="badge bg-warning">PWA Ready</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h4>Lịch sử & Theo dõi</h4>
+                        <p>Lưu trữ lịch sử phân tích, theo dõi lượng calories hàng ngày, tạo báo cáo dinh dưỡng cá nhân.</p>
+                        <div class="feature-highlight">
+                            <span class="badge bg-secondary">Local Storage</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h4>Giao diện đẹp mắt</h4>
+                        <p>Dark/Light theme, responsive design, animations mượt mà. Trải nghiệm người dùng được tối ưu hóa.</p>
+                        <div class="feature-highlight">
+                            <span class="badge bg-dark">Modern UI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works" class="how-it-works-section py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">
+                        Cách thức <span class="text-primary">hoạt động</span>
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                        Chỉ 3 bước đơn giản để có được phân tích dinh dưỡng chi tiết
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-card text-center">
+                        <div class="step-number">01</div>
+                        <div class="step-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h4>Chụp ảnh món ăn</h4>
+                        <p>Upload ảnh từ thư viện hoặc chụp trực tiếp bằng camera. Hỗ trợ nhiều định dạng file.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-card text-center">
+                        <div class="step-number">02</div>
+                        <div class="step-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h4>AI phân tích</h4>
+                        <p>Hệ thống AI nhận diện món ăn và tra cứu thông tin dinh dưỡng từ cơ sở dữ liệu khổng lồ.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="step-card text-center">
+                        <div class="step-number">03</div>
+                        <div class="step-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4>Nhận kết quả</h4>
+                        <p>Xem thông tin dinh dưỡng chi tiết, lời khuyên từ AI và lưu vào lịch sử để theo dõi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">
+                        Người dùng <span class="text-primary">nói gì</span>
+                    </h2>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="stars mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p>"Ứng dụng rất tiện lợi và chính xác. Giúp tôi kiểm soát chế độ ăn uống tốt hơn rất nhiều. AI tư vấn rất chi tiết và dễ hiểu."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='30' fill='%23FF6B35'/%3E%3Ccircle cx='30' cy='25' r='8' fill='white'/%3E%3Cpath d='M30 35c-6 0-11 3-11 7v3h22v-3c0-4-5-7-11-7z' fill='white'/%3E%3C/svg%3E" alt="Mai Anh" onerror="this.style.display='none'">
+                            </div>
+                            <div class="author-info">
+                                <h6>Mai Anh</h6>
+                                <span>Nutritionist</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="testimonial-card">
+                        <div class="stars mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p>"Tính năng nhận diện ảnh rất ấn tượng. Chỉ cần chụp là có ngay thông tin dinh dưỡng chi tiết. Rất hữu ích cho người tập gym như tôi."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Hoàng Nam">
+                            </div>
+                            <div class="author-info">
+                                <h6>Hoàng Nam</h6>
+                                <span>Fitness Trainer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="testimonial-card">
+                        <div class="stars mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p>"Giao diện đẹp, dễ sử dụng. Tính năng chatbot AI rất thông minh, trả lời câu hỏi về dinh dưỡng rất chuyên nghiệp và khoa học."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Thu Hà">
+                            </div>
+                            <div class="author-info">
+                                <h6>Thu Hà</h6>
+                                <span>Health Coach</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <h2 class="h1 mb-3">Sẵn sàng bắt đầu hành trình sức khỏe?</h2>
+                    <p class="lead mb-0">Tham gia cùng hàng nghìn người dùng đã tin tưởng Food Ninja để quản lý dinh dưỡng thông minh.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+                    <a href="app.html" class="btn btn-light btn-lg">
+                        <i class="fas fa-rocket me-2"></i>
+                        Bắt đầu ngay
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="logo-icon me-2">
+                                <i class="fas fa-utensils text-primary"></i>
+                            </div>
+                            <span class="h4 mb-0 fw-bold">Food Ninja</span>
+                        </div>
+                        <p>Ứng dụng AI phân tích dinh dưỡng thông minh, giúp bạn quản lý sức khỏe một cách khoa học và hiệu quả.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-primary mb-3">Sản phẩm</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#features" class="text-white-50 text-decoration-none">Tính năng</a></li>
+                        <li><a href="#how-it-works" class="text-white-50 text-decoration-none">Cách sử dụng</a></li>
+                        <li><a href="app.html" class="text-white-50 text-decoration-none">Thử ngay</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-primary mb-3">Hỗ trợ</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50 text-decoration-none">FAQ</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Liên hệ</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Hướng dẫn</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h6 class="text-primary mb-3">Theo dõi chúng tôi</h6>
+                    <div class="social-links mb-3">
+                        <a href="#" class="text-white-50 me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white-50 me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white-50 me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white-50 me-3"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p class="small text-white-50">© 2025 Food Ninja. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="assets/js/landing.js"></script>
+    
+    <!-- PWA Scripts -->
+    <script src="./assets/js/pwa-icons.js"></script>
+    <script src="./assets/js/pwa-installer.js"></script>
+    <script src="./assets/js/quick-icon-gen.js"></script>
+    <script src="js/pwa-debugger.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Smooth scroll to demo
+        function scrollToDemo() {
+            document.getElementById('features').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        // PWA Auto-setup
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Food Ninja Landing Page loaded');
+            
+            // Initialize PWA installer
+            if (window.PWAInstaller) {
+                console.log('📱 PWA Installer ready');
+            }
+            
+            // Auto-generate PWA icons in development
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                console.log('🎨 Development mode - PWA Debugger loaded');
+                console.log('💡 Run: pwaDebugger.generateAllIcons() to create all icons');
+                console.log('🔍 Run: pwaDebugger.checkPWAStatus() to check PWA status');
+            }
+        });
+    </script>
+</body>
+</html>

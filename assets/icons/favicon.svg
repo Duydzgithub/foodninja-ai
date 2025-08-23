@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="faviconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FF6B35"/>
+            <stop offset="50%" style="stop-color:#F7931E"/>
+            <stop offset="100%" style="stop-color:#FFD700"/>
+        </linearGradient>
+    </defs>
+    
+    <!-- Background -->
+    <rect width="32" height="32" rx="6" fill="url(#faviconGrad)"/>
+    
+    <!-- Food Bowl -->
+    <circle cx="16" cy="12" r="8" fill="#FFE4B5" stroke="#FF6B35" stroke-width="1"/>
+    <ellipse cx="16" cy="12" rx="6" ry="2" fill="#FFD700"/>
+    
+    <!-- Utensils -->
+    <g transform="translate(8, 20)">
+        <rect x="0" y="0" width="1" height="8" fill="#C0C0C0"/>
+        <rect x="-0.5" y="-1" width="0.5" height="2" fill="#C0C0C0"/>
+        <rect x="0.5" y="-1" width="0.5" height="2" fill="#C0C0C0"/>
+    </g>
+    
+    <g transform="translate(24, 20)">
+        <rect x="0" y="0" width="1" height="8" fill="#C0C0C0"/>
+        <ellipse cx="0.5" cy="-1" rx="1.5" ry="2" fill="#C0C0C0"/>
+    </g>
+    
+    <!-- AI Symbol -->
+    <circle cx="24" cy="8" r="3" fill="#4A90E2" opacity="0.9"/>
+    <circle cx="22.5" cy="7" r="0.5" fill="white"/>
+    <circle cx="25.5" cy="7" r="0.5" fill="white"/>
+    <path d="M 21 9 Q 24 10 27 9" stroke="white" stroke-width="0.5" fill="none"/>
+    
+    <!-- Text -->
+    <text x="16" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="4" font-weight="bold" fill="white">FN</text>
+</svg>

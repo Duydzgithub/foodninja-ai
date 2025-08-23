@@ -1,0 +1,39 @@
+<svg width="144" height="144" viewBox="0 0 144 144" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="bg144" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FF6B35"/>
+            <stop offset="50%" style="stop-color:#F7931E"/>
+            <stop offset="100%" style="stop-color:#FFD700"/>
+        </linearGradient>
+    </defs>
+    
+    <!-- Background -->
+    <rect width="144" height="144" rx="32" fill="url(#bg144)"/>
+    
+    <!-- Food Bowl -->
+    <circle cx="72" cy="56" r="30" fill="#FFE4B5" stroke="#FF6B35" stroke-width="3"/>
+    <ellipse cx="72" cy="56" rx="24" ry="9" fill="#FFD700"/>
+    
+    <!-- Fork -->
+    <g transform="translate(50, 88)">
+        <rect x="0" y="0" width="3" height="24" fill="#C0C0C0"/>
+        <rect x="-2" y="-4" width="2" height="8" fill="#C0C0C0"/>
+        <rect x="2" y="-4" width="2" height="8" fill="#C0C0C0"/>
+        <rect x="5" y="-4" width="2" height="8" fill="#C0C0C0"/>
+    </g>
+    
+    <!-- Spoon -->
+    <g transform="translate(92, 88)">
+        <rect x="0" y="0" width="3" height="24" fill="#C0C0C0"/>
+        <ellipse cx="1.5" cy="-4" rx="4" ry="6" fill="#C0C0C0"/>
+    </g>
+    
+    <!-- AI Symbol -->
+    <circle cx="108" cy="36" r="10" fill="#4A90E2" opacity="0.9"/>
+    <circle cx="103" cy="31" r="2" fill="white"/>
+    <circle cx="113" cy="31" r="2" fill="white"/>
+    <path d="M 96 42 Q 108 48 120 42" stroke="white" stroke-width="2" fill="none"/>
+    
+    <!-- Text -->
+    <text x="72" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Food Ninja</text>
+</svg>

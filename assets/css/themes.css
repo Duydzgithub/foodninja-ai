@@ -1,0 +1,652 @@
+/* ========================================
+   Food Ninja - Theme System (Dark/Light Mode)
+   ======================================== */
+
+/* ========================================
+   Light Theme (Default)
+   ======================================== */
+
+[data-theme="light"] {
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --bg-overlay: rgba(255, 255, 255, 0.95);
+  
+  /* Text Colors */
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-tertiary: #adb5bd;
+  --text-inverse: #ffffff;
+  --text-muted: #6c757d;
+  
+  /* Border Colors */
+  --border-primary: #dee2e6;
+  --border-secondary: #e9ecef;
+  --border-focus: #2ECC71;
+  --border-hover: #ced4da;
+  
+  /* Shadow Colors */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-hover: rgba(0, 0, 0, 0.15);
+  --shadow-color-focus: rgba(46, 204, 113, 0.25);
+  
+  /* Brand Colors (remain same) */
+  --primary: #2ECC71;
+  --primary-dark: #27AE60;
+  --secondary: #3498DB;
+  --secondary-dark: #2980B9;
+  --success: #27AE60;
+  --info: #17A2B8;
+  --warning: #F39C12;
+  --danger: #E74C3C;
+  
+  /* Header specific */
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --header-text: #212529;
+  --header-border: rgba(0, 0, 0, 0.1);
+  
+  /* Navigation */
+  --nav-bg: #ffffff;
+  --nav-text: #6c757d;
+  --nav-text-active: #2ECC71;
+  --nav-border: #dee2e6;
+  
+  /* Loading screen */
+  --loading-bg: linear-gradient(135deg, #2ECC71, #3498DB);
+  --loading-text: #ffffff;
+  
+  /* Chat specific */
+  --chat-bg: #ffffff;
+  --chat-user-bg: #2ECC71;
+  --chat-ai-bg: #f8f9fa;
+  --chat-input-bg: #ffffff;
+  
+  /* Result cards */
+  --result-bg: #ffffff;
+  --result-header-bg: #f8f9fa;
+  --result-border: #dee2e6;
+  
+  /* Progress bars */
+  --progress-bg: #e9ecef;
+  --progress-fill: linear-gradient(90deg, #2ECC71, #3498DB);
+}
+
+/* ========================================
+   Dark Theme
+   ======================================== */
+
+[data-theme="dark"] {
+  /* Background Colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3d3d3d;
+  --bg-card: #2d2d2d;
+  --bg-input: #3d3d3d;
+  --bg-overlay: rgba(26, 26, 26, 0.95);
+  
+  /* Text Colors */
+  --text-primary: #f8f9fa;
+  --text-secondary: #adb5bd;
+  --text-tertiary: #6c757d;
+  --text-inverse: #212529;
+  --text-muted: #adb5bd;
+  
+  /* Border Colors */
+  --border-primary: #495057;
+  --border-secondary: #3d3d3d;
+  --border-focus: #2ECC71;
+  --border-hover: #6c757d;
+  
+  /* Shadow Colors */
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-color-hover: rgba(0, 0, 0, 0.4);
+  --shadow-color-focus: rgba(46, 204, 113, 0.4);
+  
+  /* Brand Colors (slightly adjusted for dark theme) */
+  --primary: #2ECC71;
+  --primary-dark: #27AE60;
+  --secondary: #3498DB;
+  --secondary-dark: #2980B9;
+  --success: #27AE60;
+  --info: #17A2B8;
+  --warning: #F39C12;
+  --danger: #E74C3C;
+  
+  /* Header specific */
+  --header-bg: rgba(26, 26, 26, 0.95);
+  --header-text: #f8f9fa;
+  --header-border: rgba(255, 255, 255, 0.1);
+  
+  /* Navigation */
+  --nav-bg: #2d2d2d;
+  --nav-text: #adb5bd;
+  --nav-text-active: #2ECC71;
+  --nav-border: #495057;
+  
+  /* Loading screen */
+  --loading-bg: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  --loading-text: #f8f9fa;
+  
+  /* Chat specific */
+  --chat-bg: #2d2d2d;
+  --chat-user-bg: #2ECC71;
+  --chat-ai-bg: #3d3d3d;
+  --chat-input-bg: #3d3d3d;
+  
+  /* Result cards */
+  --result-bg: #2d2d2d;
+  --result-header-bg: #3d3d3d;
+  --result-border: #495057;
+  
+  /* Progress bars */
+  --progress-bg: #495057;
+  --progress-fill: linear-gradient(90deg, #2ECC71, #3498DB);
+}
+
+/* ========================================
+   Auto Theme (System Preference)
+   ======================================== */
+
+[data-theme="auto"] {
+  /* Light theme by default */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --bg-overlay: rgba(255, 255, 255, 0.95);
+  
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-tertiary: #adb5bd;
+  --text-inverse: #ffffff;
+  --text-muted: #6c757d;
+  
+  --border-primary: #dee2e6;
+  --border-secondary: #e9ecef;
+  --border-focus: #2ECC71;
+  --border-hover: #ced4da;
+  
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-hover: rgba(0, 0, 0, 0.15);
+  --shadow-color-focus: rgba(46, 204, 113, 0.25);
+  
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --header-text: #212529;
+  --header-border: rgba(0, 0, 0, 0.1);
+  
+  --nav-bg: #ffffff;
+  --nav-text: #6c757d;
+  --nav-text-active: #2ECC71;
+  --nav-border: #dee2e6;
+  
+  --chat-bg: #ffffff;
+  --chat-user-bg: #2ECC71;
+  --chat-ai-bg: #f8f9fa;
+  --chat-input-bg: #ffffff;
+  
+  --result-bg: #ffffff;
+  --result-header-bg: #f8f9fa;
+  --result-border: #dee2e6;
+  
+  --progress-bg: #e9ecef;
+  --progress-fill: linear-gradient(90deg, #2ECC71, #3498DB);
+}
+
+/* Auto theme dark mode */
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #3d3d3d;
+    --bg-card: #2d2d2d;
+    --bg-input: #3d3d3d;
+    --bg-overlay: rgba(26, 26, 26, 0.95);
+    
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --text-tertiary: #6c757d;
+    --text-inverse: #212529;
+    --text-muted: #adb5bd;
+    
+    --border-primary: #495057;
+    --border-secondary: #3d3d3d;
+    --border-focus: #2ECC71;
+    --border-hover: #6c757d;
+    
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-color-hover: rgba(0, 0, 0, 0.4);
+    --shadow-color-focus: rgba(46, 204, 113, 0.4);
+    
+    --header-bg: rgba(26, 26, 26, 0.95);
+    --header-text: #f8f9fa;
+    --header-border: rgba(255, 255, 255, 0.1);
+    
+    --nav-bg: #2d2d2d;
+    --nav-text: #adb5bd;
+    --nav-text-active: #2ECC71;
+    --nav-border: #495057;
+    
+    --chat-bg: #2d2d2d;
+    --chat-user-bg: #2ECC71;
+    --chat-ai-bg: #3d3d3d;
+    --chat-input-bg: #3d3d3d;
+    
+    --result-bg: #2d2d2d;
+    --result-header-bg: #3d3d3d;
+    --result-border: #495057;
+    
+    --progress-bg: #495057;
+    --progress-fill: linear-gradient(90deg, #2ECC71, #3498DB);
+  }
+}
+
+/* ========================================
+   Apply Theme Variables to Components
+   ======================================== */
+
+/* Body and main containers */
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app-container {
+  background: var(--bg-secondary);
+}
+
+/* Cards and containers */
+.card,
+.result-card,
+.feature-card,
+.step-card,
+.testimonial-card,
+.settings-group,
+.history-item,
+.chat-container {
+  background: var(--bg-card);
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+
+/* Headers */
+.app-header {
+  background: var(--header-bg);
+  border-color: var(--border-primary);
+  color: var(--header-text);
+  backdrop-filter: blur(10px);
+}
+
+.result-header,
+.chat-header {
+  background: var(--result-header-bg);
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+
+/* Navigation */
+.bottom-nav {
+  background: var(--nav-bg);
+  border-color: var(--nav-border);
+}
+
+.nav-item {
+  color: var(--nav-text);
+}
+
+.nav-item.active,
+.nav-item:hover {
+  color: var(--nav-text-active);
+}
+
+.navbar {
+  background-color: var(--header-bg) !important;
+  border-color: var(--border-primary);
+}
+
+.nav-link {
+  color: var(--text-secondary) !important;
+}
+
+.nav-link:hover {
+  color: var(--primary) !important;
+}
+
+/* Forms */
+.form-control,
+.form-select {
+  background: var(--bg-input);
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: var(--bg-input);
+  border-color: var(--border-focus);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 0.2rem var(--shadow-color-focus);
+}
+
+.form-control::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Camera area */
+.camera-area {
+  background: var(--bg-card);
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+
+.camera-area:hover {
+  border-color: var(--primary);
+  background: var(--bg-card);
+}
+
+/* Chat messages */
+.message-content {
+  background: var(--chat-ai-bg);
+  color: var(--text-primary);
+}
+
+.user-message .message-content {
+  background: var(--chat-user-bg);
+  color: var(--text-inverse);
+}
+
+.ai-message .message-avatar {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.user-message .message-avatar {
+  background: var(--text-secondary);
+}
+
+/* Progress bars */
+.progress {
+  background: var(--progress-bg);
+}
+
+.progress-bar {
+  background: var(--progress-fill);
+}
+
+.progress-card {
+  background: var(--bg-card);
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+
+/* Nutrition items */
+.nutrition-item {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.nutrition-item:hover {
+  background: var(--primary);
+  color: var(--text-inverse);
+}
+
+/* Quick actions */
+.quick-action-btn {
+  background: var(--bg-card);
+  border-color: var(--border-primary);
+  color: var(--text-secondary);
+}
+
+.quick-action-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* History stats */
+.history-stat {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* Alternative items */
+.alternative-item {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* Install prompt */
+.install-prompt {
+  background: var(--bg-card);
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+
+/* Loading screen theme aware */
+.loading-screen {
+  background: var(--loading-bg);
+  color: var(--loading-text);
+}
+
+/* Tables */
+.nutrition-table th {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.nutrition-table td {
+  color: var(--text-primary);
+  border-color: var(--border-primary);
+}
+
+/* Shadows theme aware */
+.card:hover,
+.result-card:hover,
+.feature-card:hover,
+.step-card:hover,
+.testimonial-card:hover,
+.history-item:hover {
+  box-shadow: 0 0.5rem 1rem var(--shadow-color-hover);
+}
+
+.btn:hover {
+  box-shadow: 0 0.5rem 1rem var(--shadow-color);
+}
+
+/* AI Advice theme aware */
+.ai-advice {
+  background: linear-gradient(135deg, 
+    rgba(46, 204, 113, 0.1), 
+    rgba(52, 152, 219, 0.1)
+  );
+  border-color: var(--primary);
+  color: var(--text-primary);
+}
+
+/* Toast notifications */
+.toast {
+  background: var(--bg-card);
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+
+.toast-header {
+  background: var(--bg-tertiary);
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+
+/* ========================================
+   Theme Toggle Animation
+   ======================================== */
+
+* {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Disable transitions during theme change for better performance */
+.theme-changing * {
+  transition: none !important;
+}
+
+/* ========================================
+   Theme Toggle Button
+   ======================================== */
+
+.theme-toggle {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+  z-index: -1;
+}
+
+.theme-toggle.changing::before {
+  width: 200px;
+  height: 200px;
+}
+
+/* ========================================
+   High Contrast Support
+   ======================================== */
+
+@media (prefers-contrast: high) {
+  [data-theme="light"] {
+    --border-primary: #000000;
+    --text-secondary: #000000;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  [data-theme="dark"] {
+    --border-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --shadow-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* ========================================
+   Reduced Motion Support
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  
+  .theme-toggle::before {
+    transition: none;
+  }
+}
+
+/* ========================================
+   Print Styles (Always Light)
+   ======================================== */
+
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ========================================
+   Custom Scrollbar for Dark Theme
+   ======================================== */
+
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+[data-theme="light"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 4px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+/* ========================================
+   Theme Specific Adjustments
+   ======================================== */
+
+/* Dark theme specific improvements */
+[data-theme="dark"] .hero-section {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+[data-theme="dark"] .features-section {
+  background: var(--bg-primary);
+}
+
+[data-theme="dark"] .how-it-works-section {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .testimonials-section {
+  background: var(--bg-primary);
+}
+
+[data-theme="dark"] .footer {
+  background: #000000;
+}
+
+/* Light theme floating elements */
+[data-theme="light"] .floating-food {
+  opacity: 0.1;
+}
+
+[data-theme="dark"] .floating-food {
+  opacity: 0.05;
+}
+
+/* Theme aware gradients */
+[data-theme="dark"] .bg-gradient-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+[data-theme="dark"] .bg-gradient-secondary {
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+}

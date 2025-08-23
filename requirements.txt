@@ -1,0 +1,8 @@
+Flask==3.0.3
+flask-cors==4.0.1
+requests==2.32.3
+cohere==5.5.8
+clarifai==10.0.1
+gunicorn==22.0.0
+python-dotenv==1.0.1
+Pillow==10.4.0

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWA Cache Debug</title>
+</head>
+<body>
+    <h1>PWA Cache Debug Tool</h1>
+    <p>Open browser console and run these commands:</p>
+    
+    <script>
+        console.log(`
+🔧 PWA DEBUG COMMANDS:
+
+// 1. Emergency clear all caches and reload
+async function emergencyReset() {
+    if ('serviceWorker' in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        for (let registration of registrations) {
+            await registration.unregister();
+        }
+    }
+    const cacheNames = await caches.keys();
+    await Promise.all(cacheNames.map(name => caches.delete(name)));
+    localStorage.clear(); sessionStorage.clear();
+    window.location.href = window.location.href + '?v=' + Date.now();
+}
+
+// 2. Check what's in current cache
+async function checkCache() {
+    const cacheNames = await caches.keys();
+    console.log('📦 Current caches:', cacheNames);
+    for (let name of cacheNames) {
+        const cache = await caches.open(name);
+        const keys = await cache.keys();
+        console.log(name + ' contains:', keys.map(k => k.url));
+    }
+}
+
+// 3. Test SVG icon loading
+function testSVGIcons() {
+    const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+    sizes.forEach(size => {
+        const img = new Image();
+        img.onload = () => console.log('✅ SVG ' + size + 'x' + size + ': OK');
+        img.onerror = () => console.log('❌ SVG ' + size + 'x' + size + ': FAIL');
+        img.src = 'assets/icons/icon-' + size + 'x' + size + '.svg';
+    });
+}
+
+// 4. Run everything
+async function fullDebug() {
+    console.log('🔍 Running full debug...');
+    await checkCache();
+    testSVGIcons();
+    console.log('📋 If issues persist, run: emergencyReset()');
+}
+
+// Auto-run debug
+fullDebug();
+        `);
+    </script>
+</body>
+</html>
